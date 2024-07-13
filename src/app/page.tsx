@@ -1,11 +1,9 @@
 import { ModeToggle } from "~/components/theme-toggle";
 
 import { Post } from "~/components/post";
-import { api } from "~/trpc/server";
+import { api, HydrateClient } from "~/trpc/server";
 
 export default async function Home() {
-  void api.post.getPosts.prefetch();
-
   return (
       <div className="absolute top-0 z-[-2] h-screen w-screen bg-white bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))] dark:bg-neutral-950 dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]">
         <div className="relative flex w-full flex-col items-center justify-center">
