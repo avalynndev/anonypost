@@ -1,3 +1,5 @@
+// @typescript-eslint/no-explicit-any @typescript-eslint/no-unsafe-argument
+
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { format } from "date-fns";
