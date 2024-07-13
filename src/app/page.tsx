@@ -1,6 +1,6 @@
-import { ModeToggle } from "~/app/_components/theme-toggle";
+import { ModeToggle } from "~/components/theme-toggle";
 
-import { Post } from "~/app/_components/post";
+import { Post } from "~/components/post";
 import { api, HydrateClient } from "~/trpc/server";
 
 export default async function Home() {
