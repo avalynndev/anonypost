@@ -16,7 +16,7 @@ import { Input } from "~/components/ui/input";
 
 import { api } from "~/trpc/react";
 
-export function Post() {
+export default function Post() {
   const [posts] = api.post.getPosts.useSuspenseQuery();
 
   const utils = api.useUtils();
@@ -27,6 +27,7 @@ export function Post() {
       setName("");
     },
   });
+  if (!posts) return <div>None Found</div>;
 
   return (
       <div className="w-full max-w-3xl pb-24">
