@@ -1,7 +1,7 @@
 import { ModeToggle } from "~/components/theme-toggle";
 
 import { Post } from "~/components/post";
-import { api, HydrateClient } from "~/trpc/server";
+import { api } from "~/trpc/server";
 
 export default async function Home() {
   void api.post.getPosts.prefetch();
