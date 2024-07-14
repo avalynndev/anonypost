@@ -5,16 +5,6 @@ import { Skeleton } from "~/components/ui/skeleton";
 
 const Post = dynamic(() => import("~/components/post"), {
   ssr: false,
-  loading: () => (
-    <>
-      <div className="relative flex h-[70vh] md:hidden">
-        <Skeleton className="absolute inset-0" />
-      </div>
-      <div className="relative mx-auto hidden h-[70vh] w-full md:flex">
-        <Skeleton className="container relative grid h-[70vh] w-full items-center gap-6 rounded-xl object-cover pb-8 pt-6 transition-all md:py-10" />
-      </div>
-    </>
-  ),
 });
 
 export default async function Home() {
