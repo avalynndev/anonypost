@@ -12,7 +12,7 @@ import {
 import { useState } from "react";
 import { Button } from "~/components/ui/button";
 import { formatDate } from "~/lib/utils";
-import { Input } from "~/components/ui/input";
+import { Textarea } from "~/components/ui/textarea";
 
 import { api } from "~/trpc/react";
 import Link from "next/link";
@@ -53,8 +53,8 @@ export default function Post() {
                 }}
                 className="flex flex-col gap-2"
               >
-                <Input
-                  type="text"
+                <Textarea
+                 
                   placeholder="i eat broccoli"
                   value={name}
                   onChange={(e) => setName(e.target.value)}

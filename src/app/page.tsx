@@ -1,10 +1,20 @@
 import dynamic from "next/dynamic";
 import { ModeToggle } from "~/components/theme-toggle";
 import { api, HydrateClient } from "~/trpc/server";
-import { Skeleton } from "~/components/ui/skeleton";
+import { ReloadIcon } from "@radix-ui/react-icons";
 
 const Post = dynamic(() => import("~/components/post"), {
   ssr: false,
+  loading: () => (
+    <>
+      <div className="relative flex h-[40vh] md:hidden">
+        <ReloadIcon className="mr-2 mt-4 h-8 w-8 animate-spin" />
+      </div>
+      <div className="relative hidden h-[40vh] w-full md:flex">
+        <div className="mr-2 h-8 w-8 animate-spin container relative grid h-[125px] w-[250px] items-center gap-6 rounded-xl object-cover pb-8 pt-6 transition-all md:py-10" />
+      </div>
+    </>
+  ),
 });
 
 export default async function Home() {
