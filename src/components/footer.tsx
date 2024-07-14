@@ -64,12 +64,12 @@ export const Footer = () => {
 
           <div className="col-span-2 grid grid-cols-3 gap-4">
             <Section.Root>
-              <Section.Label>Report</Section.Label>
+              <Section.Label>To Report</Section.Label>
 
               <Section.List>
                 <Section.Item>
                   <Link href="https://instagram.com/nanduu.1117">
-                    Instagram
+                    DM on Instagram
                   </Link>
                 </Section.Item>
               </Section.List>
