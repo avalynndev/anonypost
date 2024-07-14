@@ -4,6 +4,7 @@ import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { TRPCReactProvider } from "~/trpc/react";
+import { Footer } from "~/components/footer";
 
 export const metadata: Metadata = {
   title: "Bomis Anonymous Posts",
@@ -23,7 +24,8 @@ export default function RootLayout({
             defaultTheme="system"
             enableSystem
           >
-            {children}
+            {children} 
+            <Footer/>
           </NextThemesProvider>
         </TRPCReactProvider>
       </body>
