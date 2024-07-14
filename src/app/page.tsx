@@ -28,7 +28,7 @@ export default async function Home() {
           Anonymous Posts
         </span>
         <span className="pointer-events-none whitespace-pre-wrap bg-gradient-to-b from-black to-gray-300 bg-clip-text pb-4 text-center">
-          A place for posting anonymous posts for others to read
+          A website where you can enter anonymous posts for others to read.
         </span>
         <div className="fixed left-4 top-4 flex justify-center rounded-full bg-background shadow-lg">
           <ModeToggle />
