@@ -41,7 +41,7 @@ export default function Post() {
             </div>
             <div className="mt-2 text-xs">
               <Badge variant="secondary">
-                {post.isAdmin ? "USER" : "ADMIN"}
+                {post.isAdmin ? "ADMIN" : "USER"}
               </Badge>
             </div>
           </div>
