@@ -1,96 +1,48 @@
 "use client";
-import {
-  Credenza,
-  CredenzaBody,
-  CredenzaContent,
-  CredenzaDescription,
-  CredenzaFooter,
-  CredenzaHeader,
-  CredenzaTitle,
-  CredenzaTrigger,
-} from "~/components/ui/credenza";
-import { useState } from "react";
-import { Button } from "~/components/ui/button";
 import { formatDate } from "~/lib/utils";
-import { Textarea } from "~/components/ui/textarea";
 
 import { api } from "~/trpc/react";
 import Link from "next/link";
-import { Link2 } from "lucide-react";
+import { Link2, Reply } from "lucide-react";
+import { Badge } from "./ui/badge";
 
 export default function Post() {
   const [posts] = api.post.getPosts.useSuspenseQuery();
 
-  const utils = api.useUtils();
-  const [name, setName] = useState("");
-  const createPost = api.post.create.useMutation({
-    onSuccess: async () => {
-      await utils.post.invalidate();
-      setName("");
-    },
-  });
   if (!posts) return <div>None Found</div>;
 
   return (
     <div className="w-full max-w-3xl pb-24">
-      <div className="flex items-center justify-center pb-4">
-        <Credenza>
-          <CredenzaTrigger asChild>
-            <Button>New Post</Button>
-          </CredenzaTrigger>
-          <CredenzaContent>
-            <CredenzaHeader>
-              <CredenzaTitle>Anonymous Post</CredenzaTitle>
-              <CredenzaDescription>
-                Type out a new post and make sure to keep it a secret 🔐
-              </CredenzaDescription>
-            </CredenzaHeader>
-            <CredenzaBody className="space-y-4 pb-4 text-center text-sm sm:pb-0 sm:text-left">
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  createPost.mutate({ name });
-                }}
-                className="flex flex-col gap-2"
-              >
-                <Textarea
-                 
-                  placeholder="i eat broccoli"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className="w-full rounded-md px-4 py-2"
-                />
-                <Button type="submit" disabled={createPost.isPending}>
-                  {createPost.isPending ? "Submitting..." : "Submit"}
-                </Button>
-              </form>
-            </CredenzaBody>
-            <CredenzaFooter>
-              <span className="text-sm text-muted-foreground">
-                Crafted with ❤️
-              </span>
-            </CredenzaFooter>
-          </CredenzaContent>
-        </Credenza>
-      </div>
-      <div className="grid grid-cols-1 gap-2 p-4 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-2 p-4">
         {posts.map((post) => (
           <div
             key={post.id}
-            className="mb-1 rounded-lg border bg-gradient-to-b from-transparent to-muted/30 p-6 text-lg shadow-md"
+            className="w-full rounded-xl border p-10 md:px-10 md:py-8"
           >
-            {post.name}
-            {/*
-            <div className="mb-4 flex items-center justify-between">
-              <h3 className="text-xl">{post.name}</h3>
-              <p className="text-xs">
-                <Link href={`/${post.id}`}>
-                  <Link2 />
+            <div className="mb-2 flex items-center">
+              <div className="flex items-center">
+                <div className="flex flex-col">
+                  <div className="mt-2 text-xs opacity-40">
+                    {formatDate(post.createdAt)}
+                  </div>
+                </div>
+              </div>
+              <div className="gap-2 ml-auto flex h-8 w-8 items-center justify-center rounded-full text-white">
+                <Link href={`/`}>
+                  <Reply className="text-foreground" />
                 </Link>
-              </p>
-            </div> */}
-            <div className="mt-1 flex items-center justify-between">
-              <p className="text-xs">{formatDate(post.createdAt)}</p>
+                <Link href={`/`}>
+                  <Link2 className="text-foreground" />
+                </Link>
+              </div>
+            </div>
+            <div className="inline-block w-full whitespace-pre-wrap break-words text-left leading-[1.3] opacity-80">
+              {post.name}
+            </div>
+            <div className="mt-2 text-xs">
+              <Badge variant="secondary">
+                {post.isAdmin ? "USER" : "ADMIN"}
+              </Badge>
             </div>
           </div>
         ))}
