@@ -26,7 +26,8 @@ export default async function Home() {
           Anonymous Posts
         </span>
         <span className="pointer-events-none whitespace-pre-wrap bg-gradient-to-b from-black to-gray-300 bg-clip-text p-4 pb-4 text-center">
-          A website where you can enter anonymous posts for others to read.
+          Share your thoughts and experiences anonymously by posting on our
+          platform — no sign-up needed!
         </span>
         <Post />
       </div>

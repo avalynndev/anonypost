@@ -10,7 +10,7 @@ import { Footer } from "~/components/footer";
 export const metadata: Metadata = {
   title: "Bomis Anonymous Posts",
   description:
-    "A website where you can enter anonymous posts for others to read.",
+    "Share your thoughts and experiences anonymously by posting on our platform — no sign-up needed!",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
