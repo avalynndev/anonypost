@@ -9,8 +9,8 @@ const Post = dynamic(() => import("~/components/post"), {
       <div className="relative flex h-[40vh] md:hidden">
         <ReloadIcon className="mr-2 mt-4 h-8 w-8 animate-spin" />
       </div>
-      <div className="relative hidden h-[40vh] w-full md:flex">
-        <div className="container relative mr-2 grid h-8 h-[125px] w-8 w-[250px] animate-spin items-center gap-6 rounded-xl object-cover pb-8 pt-6 transition-all md:py-10" />
+      <div className="relative hidden h-[40vh] w-full max-w-12 md:flex">
+        <ReloadIcon className="mr-2 mt-4 h-8 w-8 animate-spin" />
       </div>
     </>
   ),

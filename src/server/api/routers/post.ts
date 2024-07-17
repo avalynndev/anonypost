@@ -22,9 +22,22 @@ export const postRouter = createTRPCRouter({
     });
   }),
 
-  getPostData: publicProcedure.query(({ ctx }) => {
-    return ctx.db.post.findMany({
-      orderBy: { createdAt: "desc" },
-    });
-  }),
+  addReply: publicProcedure
+    .input(
+      z.object({
+        postId: z.number(),
+        reply: z.string(),
+      }),
+    )
+    .mutation(async ({ ctx, input }) => {
+      const { postId, reply } = input;
+      return await ctx.db.post.update({
+        where: { id: postId },
+        data: {
+          replies: {
+            push: reply,
+          },
+        },
+      });
+    }),
 });

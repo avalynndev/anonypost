@@ -23,7 +23,7 @@ export default function RootLayout({
         <TRPCReactProvider>
           <NextThemesProvider
             attribute="class"
-            defaultTheme="system"
+            defaultTheme="dark"
             enableSystem
           >
             <Navbar />

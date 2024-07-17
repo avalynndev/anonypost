@@ -29,8 +29,6 @@ const Section = {
 };
 export const Footer = () => {
   return (
-    <>
-    <div className=""></div>
       <footer className="px-4">
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 border-t py-12 lg:grid-cols-5 lg:gap-4">
           <div className="col-span-3 flex flex-col justify-between space-y-2">
@@ -80,7 +78,7 @@ export const Footer = () => {
 
               <Section.List>
                 <Section.Item>
-                  <Link href="https://github.com/avalynndev/enjoytown">
+                  <Link href="https://github.com/avalynndev/anonumu">
                     Github
                   </Link>
                 </Section.Item>
@@ -89,6 +87,5 @@ export const Footer = () => {
           </div>
         </div>
       </footer>
-    </>
   );
 };

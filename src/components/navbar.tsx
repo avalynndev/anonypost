@@ -1,14 +1,14 @@
 "use client";
 import {
-  Credenza,
-  CredenzaBody,
-  CredenzaContent,
-  CredenzaDescription,
-  CredenzaFooter,
-  CredenzaHeader,
-  CredenzaTitle,
-  CredenzaTrigger,
-} from "~/components/ui/credenza";
+  Annu,
+  AnnuBody,
+  AnnuContent,
+  AnnuDescription,
+  AnnuFooter,
+  AnnuHeader,
+  AnnuTitle,
+  AnnuTrigger,
+} from "~/components/ui/annu";
 import { useState } from "react";
 import { Textarea } from "~/components/ui/textarea";
 
@@ -37,21 +37,21 @@ export const Navbar = () => {
         >
           <img className="size-6" src="/logo.png" alt="gemini logo" />
         </Link>
-        <Credenza>
-          <CredenzaTrigger asChild>
+        <Annu>
+          <AnnuTrigger asChild>
             <Button size="sm" variant="ghost">
               <SquarePlus className="h-4 w-4" />
               <div className="px-2 text-sm">New Post</div>
             </Button>
-          </CredenzaTrigger>
-          <CredenzaContent>
-            <CredenzaHeader>
-              <CredenzaTitle>Anonymous Post</CredenzaTitle>
-              <CredenzaDescription>
+          </AnnuTrigger>
+          <AnnuContent>
+            <AnnuHeader>
+              <AnnuTitle>Anonymous Post</AnnuTitle>
+              <AnnuDescription>
                 Type out a new post and make sure to keep it a secret 🔐
-              </CredenzaDescription>
-            </CredenzaHeader>
-            <CredenzaBody className="space-y-4 pb-4 text-center text-sm sm:pb-0 sm:text-left">
+              </AnnuDescription>
+            </AnnuHeader>
+            <AnnuBody className="space-y-4 pb-4 text-center text-sm sm:pb-0 sm:text-left">
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
@@ -69,14 +69,14 @@ export const Navbar = () => {
                   {createPost.isPending ? "Submitting..." : "Submit"}
                 </Button>
               </form>
-            </CredenzaBody>
-            <CredenzaFooter>
+            </AnnuBody>
+            <AnnuFooter>
               <span className="text-sm text-muted-foreground">
                 Crafted with ❤️
               </span>
-            </CredenzaFooter>
-          </CredenzaContent>
-        </Credenza>
+            </AnnuFooter>
+          </AnnuContent>
+        </Annu>
       </div>
 
       <div className="flex">
@@ -85,7 +85,7 @@ export const Navbar = () => {
         <Button asChild size="sm" variant="ghost" aria-label="View on GitHub">
           <Link
             aria-label="View on GitHub"
-            href="https://github.com/nobruf/shadcn-landing-page.git"
+            href="https://github.com/avalynndev/anonumu"
             target="_blank"
           >
             <Github className="size-5" />
