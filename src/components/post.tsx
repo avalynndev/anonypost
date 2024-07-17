@@ -43,7 +43,7 @@ export default function Post() {
 
     setNewReply("");
     setSelectedPostId(null);
-    refetch();
+    await refetch();
   };
 
   const filteredPosts = posts?.filter((post) => {
