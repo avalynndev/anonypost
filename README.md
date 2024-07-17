@@ -1,5 +1,5 @@
 <h1 align="center">
-Anonumu
+Anonypost
 </h1>
 
 <p align="center">
@@ -14,16 +14,16 @@ Anonumu
   <a href="#"><img src="https://img.shields.io/badge/nextjs-%2320232a.svg?style=for-the-badge&logo=nextdotjs&logoColor=white"/></a>
 </p>
 
-## What is Anonumu?
+## What is Anonypost?
 
-Welcome to **Anonumu**, where everything in anonymous! Explore **[anonumu.vercel.app](https://anonumu.vercel.app)** and post anonymous posts and get anonymous replies to them.
+Welcome to **Anonypost**, where everything in anonymous! Explore **[Anonypost.vercel.app](https://anonypost.vercel.app)** and post anonymous posts and get anonymous replies to them.
 
 Share your thoughts and experiences anonymously by posting on our platform — no sign-up needed!
 
 ## Images
 
 <div align="center">
-  <img src="https://api.microlink.io/?url=https://anonumu.vercel.app&screenshot=true&meta=false&embed=screenshot.url&type=jpeg&overlay.browser=dark&overlay.background=linear-gradient%28225deg%2C+%23FF057C+0%25%2C+%238D0B93+50%25%2C+%23321575+100%25%29" alt="Home Page" style="max-width: 100%;" >
+  <img src="https://api.microlink.io/?url=https://anonypost.vercel.app&screenshot=true&meta=false&embed=screenshot.url&type=jpeg&overlay.browser=dark&overlay.background=linear-gradient%28225deg%2C+%23FF057C+0%25%2C+%238D0B93+50%25%2C+%23321575+100%25%29" alt="Home Page" style="max-width: 100%;" >
 </div>
 
 ## Installation 🛠️
@@ -31,11 +31,11 @@ Share your thoughts and experiences anonymously by posting on our platform — n
 ### 1. Clone this repository using
 
 ```bash
-git clone https://github.com/avalynndev/anonumu.git
+git clone https://github.com/avalynndev/anonypost.git
 ```
 
 ```bash
-cd anonumu
+cd anonypost
 ```
 
 ### 2. Installation
@@ -48,7 +48,7 @@ npm install
 
 ### Add a ENV FILE with:
 ```env
-DATABASE_URL="postgresql://postgres:password@localhost:5432/anonumu"
+DATABASE_URL="postgresql://postgres:password@localhost:5432/anonypost"
 ```
 
 ### 3. Run on development &/or production
@@ -65,9 +65,9 @@ npm run dev
 npm start
 ```
 
-> Deploy **your own anonumu** Instance on Vercel
+> Deploy **your own anonypost** Instance on Vercel
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Favalynndev%2Fanonumu&project-name=anonumu&repository-name=anonumu)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Favalynndev%anonypost&project-name=anonypost&repository-name=anonypost)
 
 
 ## Found a Bug? 🐞
@@ -76,7 +76,7 @@ Uh-oh, looks like you stumbled upon a bug? No worries, we're here to squash it! 
 
 ## Contributors 🤲
 
-<img height="50" src="https://contrib.rocks/image?repo=avalynndev/anonumu" />
+<img height="50" src="https://contrib.rocks/image?repo=avalynndev/anonypost" />
 
 #### Want to Help Out?
 

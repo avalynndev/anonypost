@@ -78,7 +78,7 @@ export const Footer = () => {
 
               <Section.List>
                 <Section.Item>
-                  <Link href="https://github.com/avalynndev/anonumu">
+                  <Link href="https://github.com/avalynndev/anonypost">
                     Github
                   </Link>
                 </Section.Item>
