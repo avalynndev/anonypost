@@ -1,29 +1,83 @@
-# Create T3 App
+<h1 align="center">
+Anonumu
+</h1>
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+<p align="center">
+  <a href="" target="_blank">
+    <img src="./public/logo.png?raw=true" alt="Logo" width="100"/>
+  </a>
+</p>
 
-## What's next? How do I make an app with this?
+<p align="center">
+  <a href="#"><img src="https://img.shields.io/badge/typescript-%23007acc.svg?style=for-the-badge&logo=typescript&logoColor=%23ffffff"/></a>
+  <a href="#"><img src="https://img.shields.io/badge/shadcn/UI-%23ffffff.svg?style=for-the-badge&logo=shadcnui&logoColor=black"/></a>
+  <a href="#"><img src="https://img.shields.io/badge/nextjs-%2320232a.svg?style=for-the-badge&logo=nextdotjs&logoColor=white"/></a>
+</p>
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+## What is Anonumu?
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+Welcome to **Anonumu**, where everything in anonymous! Explore **[anonumu.vercel.app](https://anonumu.vercel.app)** and post anonymous posts and get anonymous replies to them.
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Drizzle](https://orm.drizzle.team)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+Share your thoughts and experiences anonymously by posting on our platform — no sign-up needed!
 
-## Learn More
+## Images
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+<div align="center">
+  <img src="https://api.microlink.io/?url=https://anonumu.vercel.app&screenshot=true&meta=false&embed=screenshot.url&type=jpeg&overlay.browser=dark&overlay.background=linear-gradient%28225deg%2C+%23FF057C+0%25%2C+%238D0B93+50%25%2C+%23321575+100%25%29" alt="Home Page" style="max-width: 100%;" >
+</div>
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+## Installation 🛠️
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+### 1. Clone this repository using
 
-## How do I deploy this?
+```bash
+git clone https://github.com/avalynndev/anonumu.git
+```
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+```bash
+cd anonumu
+```
+
+### 2. Installation
+
+### Install Dependencies
+
+```bash
+npm install
+```
+
+### Add a ENV FILE with:
+```env
+DATABASE_URL="postgresql://postgres:password@localhost:5432/anonumu"
+```
+
+### 3. Run on development &/or production
+
+- Run on development mode
+
+```bash
+npm run dev
+```
+
+- Run on production mode
+
+```bash
+npm start
+```
+
+> Deploy **your own anonumu** Instance on Vercel
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Favalynndev%2Fanonumu&project-name=anonumu&repository-name=anonumu)
+
+
+## Found a Bug? 🐞
+
+Uh-oh, looks like you stumbled upon a bug? No worries, we're here to squash it! Just head over to our [**issues**](https://github.com/avalynndev/anonumu/issues) section on GitHub and let us know what's up.
+
+## Contributors 🤲
+
+<img height="50" src="https://contrib.rocks/image?repo=avalynndev/anonumu" />
+
+#### Want to Help Out?
+
+Feel free to contribute to this project! Whether you're an experienced developer or have been in the field for a while, your help is valuable.
