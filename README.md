@@ -67,8 +67,7 @@ npm start
 
 > Deploy **your own anonypost** Instance on Vercel
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Favalynndev%anonypost&project-name=anonypost&repository-name=anonypost)
-
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Favalynndev%2Fanonypost&env=DATABASE_URL)
 
 ## Found a Bug? 🐞
 
