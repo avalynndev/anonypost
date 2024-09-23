@@ -40,7 +40,7 @@
     "superjson": "^2.2.1",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
-    "vaul": "^0.9.1",
+    "vaul": "^0.9.4",
     "zod": "^3.23.3"
   },
   "devDependencies": {
