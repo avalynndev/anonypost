@@ -10,6 +10,7 @@ import {
   AnnuTrigger,
 } from "~/components/ui/annu";
 import { useState } from "react";
+import Image from "next/image";
 import { Textarea } from "~/components/ui/textarea";
 
 import { api } from "~/trpc/react";
@@ -21,11 +22,14 @@ import { ToggleTheme } from "~/components/toogle-theme";
 
 export const Navbar = () => {
   const utils = api.useUtils();
+  const [annuOpen, setAnnuOpen] = useState(false);
   const [name, setName] = useState("");
   const createPost = api.post.create.useMutation({
     onSuccess: async () => {
       await utils.post.invalidate();
       setName("");
+      // Close the Annu create form
+      setAnnuOpen(false);
     },
   });
   return (
@@ -35,9 +39,11 @@ export const Navbar = () => {
           href="/"
           className="flex items-center space-y-1 px-4 py-2 text-lg font-bold"
         >
-          <img className="size-6" src="/logo.png" alt="gemini logo" />
+          <div className="relative size-6">
+            <Image fill src="/logo.png" alt="gemini logo" />
+          </div>
         </Link>
-        <Annu>
+        <Annu open={annuOpen} onOpenChange={setAnnuOpen}>
           <AnnuTrigger asChild>
             <Button size="sm" variant="ghost">
               <SquarePlus className="h-4 w-4" />
