@@ -14,6 +14,12 @@ Anonypost
   <a href="#"><img src="https://img.shields.io/badge/nextjs-%2320232a.svg?style=for-the-badge&logo=nextdotjs&logoColor=white"/></a>
 </p>
 
+<p align="center">
+<a  href="https://www.youtube.com/watch?v=y0Ru3D7CQgw" target="_blank">
+    <img src="https://i9.ytimg.com/vi/y0Ru3D7CQgw/mqdefault.jpg?v=67d55de8&sqp=CPT02b4G&rs=AOn4CLCZDhpy_Bi7C1OMVqA0D1__sZZy6g" alt="Logo" width="300"/>
+</a>
+</p>
+
 ## What is Anonypost?
 
 Welcome to **Anonypost**, where everything in anonymous! Explore **[Anonypost.vercel.app](https://anonypost.vercel.app)** and post anonymous posts and get anonymous replies to them.
