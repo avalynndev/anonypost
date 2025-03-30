@@ -5,6 +5,7 @@ import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { TRPCReactProvider } from "~/trpc/react";
 import { Navbar } from "~/components/navbar";
 import { Footer } from "~/components/footer";
+import Meta from "~/components/meta";
 
 export const metadata: Metadata = {
   manifest: "/manifest.json",
@@ -19,6 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
       <head>
+        <Meta />
         <link
           rel="apple-touch-icon"
           sizes="180x180"
