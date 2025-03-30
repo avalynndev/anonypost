@@ -12,6 +12,27 @@ export const metadata: Metadata = {
   title: "Anonymous Posts",
   description:
     "Share your thoughts and experiences anonymously by posting on our platform — no sign-up needed!",
+  openGraph: {
+    type: "website",
+    url: "https://anonypost.vercel.app",
+    title: "Anonymous Posts",
+    description:
+      "Share your thoughts and experiences anonymously by posting on our platform — no sign-up needed!",
+    images: [
+      {
+        url: "https://anonypost.vercel.app/splash/manifest-icon-192.maskable.png",
+        width: 192,
+        height: 192,
+        alt: "Anonymous Posts",
+      },
+      {
+        url: "https://anonypost.vercel.app/splash/manifest-icon-512.maskable.png",
+        width: 512,
+        height: 512,
+        alt: "Anonymous Posts",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
