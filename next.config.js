@@ -1,8 +1,14 @@
+/**
+ * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially useful
+ * for Docker builds.
+ */
+
 /** @type {import('next').NextConfig} */
 const config = {};
 
-// Import and wrap your config with next-pwa
-const withPWA = require("@ducanh2912/next-pwa").default({
+import withPWAInit from "@ducanh2912/next-pwa";
+
+const withPWA = withPWAInit({
     dest: "public",
     cacheOnFrontEndNav: true,
     aggressiveFrontEndNavCaching: true,
@@ -12,9 +18,8 @@ const withPWA = require("@ducanh2912/next-pwa").default({
         disableDevLogs: true,
     },
 });
-// Export an async function that waits for env validation before returning the wrapped config
-module.exports = (async () => {
-    // Run env validation (skip by setting SKIP_ENV_VALIDATION if needed)
+
+export default (async () => {
     await import("./src/env.js");
     return withPWA(config);
 })();

@@ -8,6 +8,7 @@ import { Navbar } from "~/components/navbar";
 import { Footer } from "~/components/footer";
 
 export const metadata: Metadata = {
+  manifest: "/manifest.json",
   title: "Anonymous Posts",
   description:
     "Share your thoughts and experiences anonymously by posting on our platform — no sign-up needed!",
