@@ -48,7 +48,7 @@ export const Footer = () => {
             </div>
 
             <p className="text-sm text-muted-foreground">
-              Created with {`<3`} by Kushi, and special thanks to Srinka
+              Created with {`<3`} by avalynndev, and special thanks to Srinka
             </p>
           </div>
 
