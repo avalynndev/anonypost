@@ -52,7 +52,7 @@
     "prisma": "^6.7.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-hook-form": "^7.56.1",
+    "react-hook-form": "^7.56.2",
     "react-resizable-panels": "^2.1.9",
     "recharts": "^2.15.3",
     "tailwind-merge": "^3.2.0",
