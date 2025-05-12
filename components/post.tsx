@@ -3,31 +3,37 @@
 import { useEffect, useState } from "react";
 import { formatDate } from "@/lib/utils";
 import {
+  CornerBottomLeftIcon,
+  CrossCircledIcon,
+  ChatBubbleIcon,
+  HeartIcon,
+  PaperPlaneIcon,
+  ReloadIcon,
+} from "@radix-ui/react-icons";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import {
-  CrossCircledIcon,
-  ChatBubbleIcon,
-  HeartIcon,
-  CornerBottomLeftIcon,
-  PaperPlaneIcon,
-} from "@radix-ui/react-icons";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
-import { Input } from "@/components/ui/input";
-import { ReloadIcon } from "@radix-ui/react-icons";
+
+type Reply = {
+  id: number;
+  body: string;
+  createdAt: string;
+};
 
 type Post = {
   id: number;
   name: string;
   createdAt: string;
   isAdmin: boolean;
-  replies: string[];
+  replies: Reply[];
 };
 
 export default function Post() {
@@ -69,19 +75,11 @@ export default function Post() {
 
   useEffect(() => {
     fetchPosts();
-
-    /**const interval = setInterval(() => {
-      fetchPosts();
-    }, 5000);
-
-    return () => clearInterval(interval); **/
   }, []);
 
-  const filteredPosts = posts.filter((post) =>
-    post.name.toLowerCase().includes(searchTerm.toLowerCase()),
+  const visiblePosts = posts.filter((post) =>
+    post.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
-  const visiblePosts = searchTerm ? filteredPosts : posts;
 
   return (
     <div className="w-full max-w-3xl pb-24">
@@ -94,14 +92,9 @@ export default function Post() {
           className="mb-4 w-full rounded-md text-sm"
         />
         {loading ? (
-          <>
-            <div className="relative flex h-[40vh] items-center justify-center md:hidden">
-              <ReloadIcon className="h-8 w-8 animate-spin" />
-            </div>
-            <div className="relative hidden h-[40vh] w-full items-center justify-center md:flex">
-              <ReloadIcon className="h-8 w-8 animate-spin" />
-            </div>
-          </>
+          <div className="relative flex h-[40vh] items-center justify-center">
+            <ReloadIcon className="h-8 w-8 animate-spin" />
+          </div>
         ) : visiblePosts.length === 0 ? (
           <div>No posts found.</div>
         ) : (
@@ -111,11 +104,9 @@ export default function Post() {
               className="w-full rounded-xl border p-10 md:px-10 md:py-8"
             >
               <div className="mb-2 flex items-center whitespace-pre-line">
-                <div className="flex items-center">
-                  <div className="flex flex-col">
-                    <div className="mt-2 text-xs opacity-40">
-                      {formatDate(post.createdAt)}
-                    </div>
+                <div className="flex flex-col">
+                  <div className="mt-2 text-xs opacity-40">
+                    {formatDate(post.createdAt)}
                   </div>
                 </div>
                 <div className="ml-auto">
@@ -130,16 +121,16 @@ export default function Post() {
                 {post.name}
               </div>
               <div className="mb-4 mt-4 text-xs">
-                {post.replies?.length > 0 ? (
+                {post.replies.length > 0 ? (
                   post.replies.map((reply, index) => (
                     <div
-                      key={index}
+                      key={reply.id}
                       className={`mb-2 text-xs ${index === 0 ? "" : "pl-5"}`}
                     >
                       {index === 0 && (
                         <CornerBottomLeftIcon className="mr-1 inline h-4 w-4" />
                       )}
-                      {reply}
+                      {reply.body}
                     </div>
                   ))
                 ) : (
@@ -178,7 +169,7 @@ export default function Post() {
                     <Button
                       onClick={() =>
                         setSelectedPostId(
-                          selectedPostId === post.id ? null : post.id,
+                          selectedPostId === post.id ? null : post.id
                         )
                       }
                       variant="outline"
@@ -201,17 +192,11 @@ export default function Post() {
                           <PaperPlaneIcon className="h-4 w-4" />
                         </Button>
                       </DropdownMenuTrigger>
-                      <DropdownMenuContent
-                        align="start"
-                        className="w-[190px] rounded-2xl bg-background p-0 shadow-xl dark:bg-[#181818]"
-                      >
-                        <DropdownMenuItem
-                          onClick={copyLinkToClipboard}
-                          className="cursor-pointer select-none rounded-none px-4 py-3 text-[15px] font-semibold tracking-normal focus:bg-transparent active:bg-primary-foreground"
-                        >
+                      <DropdownMenuContent align="start" className="w-[190px]">
+                        <DropdownMenuItem onClick={copyLinkToClipboard}>
                           Copy link
                         </DropdownMenuItem>
-                        <DropdownMenuSeparator className="my-0 h-[1.2px]" />
+                        <DropdownMenuSeparator />
                       </DropdownMenuContent>
                     </DropdownMenu>
                   </div>

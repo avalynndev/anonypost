@@ -134,34 +134,44 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
     font-weight: var(--font-weight-bold);
   }
+
   .border {
     border-width: 2px !important;
   }
+
   .border-l {
     border-left-width: 2px !important;
   }
+
   .border-r {
     border-right-width: 2px !important;
   }
+
   .border-t {
     border-top-width: 2px !important;
   }
+
   .border-b {
     border-bottom-width: 2px !important;
   }
+
   .shadow-primary {
     box-shadow: 0 2px 0 0 var(--primary-border);
   }
+
   .shadow-destructive {
     box-shadow: 0 2px 0 0 var(--destructive);
   }
+
   .shadow-destructive-border {
     box-shadow: 0 2px 0 0 var(--destructive-border);
   }
+
   .texture {
     background-image: url(https://matsu-theme.vercel.app/texture.jpg);
     background-size: 100% 100%;

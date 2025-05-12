@@ -34,8 +34,6 @@ export const Navbar = () => {
 
     setName("");
     setAnnuOpen(false);
-    // Optionally, you can refetch posts here if needed
-    // await fetchPosts();
   };
 
   return (
