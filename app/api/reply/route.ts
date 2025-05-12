@@ -1,8 +1,14 @@
-import { NextRequest, NextResponse } from "next/server";
-import { addReply } from "@/lib/posts";
+import { db } from "@/db";
+import { reply } from "@/schema";
 
-export async function POST(req: NextRequest) {
-  const { postId, reply } = await req.json();
-  const post = await addReply(postId, reply);
-  return NextResponse.json(post);
+export async function POST(req: Request) {
+  const { postId, body, username } = await req.json();
+
+  await db.insert(reply).values({
+    body,
+    postId,
+    username,
+  });
+
+  return new Response(JSON.stringify({ success: true }));
 }
