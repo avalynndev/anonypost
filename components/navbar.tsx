@@ -16,24 +16,42 @@ import { Textarea } from "@/components/ui/textarea";
 import { Github, SquarePlus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { db } from "@/db";
+import { post } from "@/schema";
+import { useRouter } from "next/navigation";
+import { UserButton } from "@daveyplate/better-auth-ui";
+import { useSession } from "@/lib/auth-client";
+import { PersonIcon } from "@radix-ui/react-icons";
+import { Switch } from "@/components/ui/switch"; // 👈 make sure you have this
+import { Label } from "@/components/ui/label";
 
 export const Navbar = () => {
+  const session = useSession();
+  const username = session.data?.user?.username ?? undefined;
+  const isAdmin = username === "avalynndev";
   const [annuOpen, setAnnuOpen] = useState(false);
   const [name, setName] = useState("");
+  const [isAnonymous, setIsAnonymous] = useState(true);
+  const router = useRouter();
 
   const handleCreatePost = async () => {
     if (!name.trim()) return;
 
-    await fetch("/api/create", {
-      method: "POST",
-      body: JSON.stringify({ name }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const finalUsername = isAnonymous ? undefined : username;
+
+    await db
+      .insert(post)
+      .values({
+        name,
+        username: finalUsername,
+        isAdmin,
+      })
+      .returning();
 
     setName("");
     setAnnuOpen(false);
+    setIsAnonymous(true); // reset
+    router.refresh();
   };
 
   return (
@@ -70,7 +88,7 @@ export const Navbar = () => {
                   e.preventDefault();
                   await handleCreatePost();
                 }}
-                className="flex flex-col gap-2"
+                className="flex flex-col gap-4"
               >
                 <Textarea
                   name="name"
@@ -79,6 +97,23 @@ export const Navbar = () => {
                   onChange={(e) => setName(e.target.value)}
                   className="w-full rounded-md px-4 py-2"
                 />
+
+                {/* 🔁 Anonymous toggle if signed in */}
+                {session.data?.user && (
+                  <div className="flex items-center gap-2">
+                    <Switch
+                      id="anonymous-toggle"
+                      checked={isAnonymous}
+                      onCheckedChange={setIsAnonymous}
+                    />
+                    <Label htmlFor="anonymous-toggle">
+                      {isAnonymous
+                        ? "Posting as Anonymous"
+                        : "Posting as " + username}
+                    </Label>
+                  </div>
+                )}
+
                 <Button type="submit">Submit</Button>
               </form>
             </AnnuBody>
@@ -102,6 +137,17 @@ export const Navbar = () => {
             <Github className="size-5" />
           </Link>
         </Button>
+        <UserButton
+          additionalLinks={[
+            {
+              href: `/profile/${username}`,
+              label: "Profile",
+              icon: <PersonIcon />,
+              signedIn: true,
+            },
+          ]}
+          className="ml-1"
+        />
       </div>
     </header>
   );
