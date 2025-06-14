@@ -1,9 +1,9 @@
-import { db } from "@/db";import { user, post } from "@/schema";
+import { db } from "@/db";
+import { user, post } from "@/schema";
 import { eq } from "drizzle-orm";
 import { notFound } from "next/navigation";
 import { format } from "date-fns";
 import Link from "next/link";
-
 
 export default async function ProfilePage({ params }: any) {
   const { username } = await params;

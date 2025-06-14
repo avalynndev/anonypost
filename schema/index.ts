@@ -21,7 +21,6 @@ export const user = pgTable("user", {
   displayUsername: text("display_username"),
 });
 
-
 export const post = pgTable(
   "post",
   {
@@ -37,7 +36,7 @@ export const post = pgTable(
   (table) => [
     index("post_name_idx").on(table.name),
     index("post_username_idx").on(table.username),
-  ]
+  ],
 );
 
 // Reply schema

@@ -5,28 +5,17 @@ import { useRouter } from "next/navigation";
 import { formatDate } from "@/lib/utils";
 import {
   CornerBottomLeftIcon,
-  CrossCircledIcon,
   ChatBubbleIcon,
   HeartIcon,
-  PaperPlaneIcon,
   ReloadIcon,
 } from "@radix-ui/react-icons";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 
 import { db } from "@/db";
 import { post, reply } from "@/schema";
-import { desc, eq } from "drizzle-orm";
-import { useSession } from "@/lib/auth-client";
+import { desc } from "drizzle-orm";
 
 type Reply = {
   id: number;
@@ -44,13 +33,9 @@ type Post = {
 
 export default function Post() {
   const router = useRouter();
-  const session = useSession();
-  const username = session.data?.user?.username ?? undefined;
 
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
-  const [newReply, setNewReply] = useState("");
-  const [selectedPostId, setSelectedPostId] = useState<number | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
 
   const fetchPosts = async () => {
@@ -62,7 +47,6 @@ export default function Post() {
         .orderBy(desc(post.createdAt));
       const allReplies = await db.select().from(reply);
 
-      // Map replies to postId
       const postWithReplies = allPosts.map((p) => ({
         ...p,
         replies: allReplies.filter((r) => r.postId === p.id),
@@ -79,7 +63,7 @@ export default function Post() {
   }, []);
 
   const visiblePosts = posts.filter((post) =>
-    post.name.toLowerCase().includes(searchTerm.toLowerCase())
+    post.name.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
   return (
@@ -146,11 +130,7 @@ export default function Post() {
               </div>
 
               <div className="mt-2 flex gap-2">
-                <Button
-                  disabled
-                  variant="outline"
-                  size="icon"
-                >
+                <Button disabled variant="outline" size="icon">
                   <ChatBubbleIcon className="h-4 w-4" />
                 </Button>
                 <Button disabled variant="outline" size="icon">

@@ -10,8 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 import { formatDate } from "@/lib/utils";
 import { useSession } from "@/lib/auth-client";
-import { ReloadIcon } from "@radix-ui/react-icons";
-import Link from 'next/link';
+import Link from "next/link";
 
 export default function PostDetailPage() {
   const { id } = useParams();
