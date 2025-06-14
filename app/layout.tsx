@@ -4,6 +4,7 @@ import { PT_Sans } from "next/font/google";
 import "@/styles/globals.css";
 import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar";
+import { Providers } from "@/components/providers";
 
 const nunito = Nunito({
   variable: "--font-nunito",
@@ -63,9 +64,11 @@ export default function RootLayout({
         className={`${nunito.variable} ${ptSans.variable} antialiased relative`}
       >
         <div className="texture" />
-        <Navbar />
-        {children}
-        <Footer />
+        <Providers>
+          <Navbar />
+          {children}
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

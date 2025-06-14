@@ -8,6 +8,19 @@ import {
 } from "drizzle-orm/pg-core";
 import { index } from "drizzle-orm/pg-core";
 
+// The User schema
+export const user = pgTable("user", {
+  id: text("id").primaryKey(),
+  name: text("name").notNull(),
+  email: text("email").notNull().unique(),
+  emailVerified: boolean("email_verified").notNull(),
+  image: text("image"),
+  createdAt: timestamp("created_at").notNull(),
+  updatedAt: timestamp("updated_at").notNull(),
+  username: text("username").unique(),
+  displayUsername: text("display_username"),
+});
+
 
 export const post = pgTable(
   "post",
@@ -26,19 +39,6 @@ export const post = pgTable(
     index("post_username_idx").on(table.username),
   ]
 );
-
-// The User schema
-export const user = pgTable("user", {
-  id: text("id").primaryKey(),
-  name: text("name").notNull(),
-  email: text("email").notNull().unique(),
-  emailVerified: boolean("email_verified").notNull(),
-  image: text("image"),
-  createdAt: timestamp("created_at").notNull(),
-  updatedAt: timestamp("updated_at").notNull(),
-  username: text("username").unique(),
-  displayUsername: text("display_username"),
-});
 
 // Reply schema
 export const reply = pgTable("reply", {

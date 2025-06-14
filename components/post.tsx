@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { formatDate } from "@/lib/utils";
 import {
   CornerBottomLeftIcon,
@@ -22,21 +23,30 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
+import { db } from "@/db";
+import { post, reply } from "@/schema";
+import { desc, eq } from "drizzle-orm";
+import { useSession } from "@/lib/auth-client";
+
 type Reply = {
   id: number;
+  postId: number;
   body: string;
-  createdAt: string;
 };
 
 type Post = {
   id: number;
   name: string;
-  createdAt: string;
+  createdAt: Date;
   isAdmin: boolean;
-  replies: Reply[];
+  replies?: Reply[];
 };
 
 export default function Post() {
+  const router = useRouter();
+  const session = useSession();
+  const username = session.data?.user?.username ?? undefined;
+
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
   const [newReply, setNewReply] = useState("");
@@ -46,31 +56,22 @@ export default function Post() {
   const fetchPosts = async () => {
     setLoading(true);
     try {
-      const res = await fetch("/api/posts");
-      const data = await res.json();
-      setPosts(data);
+      const allPosts = await db
+        .select()
+        .from(post)
+        .orderBy(desc(post.createdAt));
+      const allReplies = await db.select().from(reply);
+
+      // Map replies to postId
+      const postWithReplies = allPosts.map((p) => ({
+        ...p,
+        replies: allReplies.filter((r) => r.postId === p.id),
+      }));
+
+      setPosts(postWithReplies);
     } finally {
       setLoading(false);
     }
-  };
-
-  const handleAddReply = async (postId: number) => {
-    if (!newReply.trim()) return;
-
-    await fetch("/api/reply", {
-      method: "POST",
-      body: JSON.stringify({ postId, reply: newReply }),
-      headers: { "Content-Type": "application/json" },
-    });
-
-    setNewReply("");
-    setSelectedPostId(null);
-    await fetchPosts();
-  };
-
-  const copyLinkToClipboard = async () => {
-    const link = window.location.href;
-    await navigator.clipboard.writeText(link);
   };
 
   useEffect(() => {
@@ -101,7 +102,8 @@ export default function Post() {
           visiblePosts.map((post) => (
             <div
               key={post.id}
-              className="w-full rounded-xl border p-10 md:px-10 md:py-8"
+              onClick={() => router.push(`/post/${post.id}`)}
+              className="w-full cursor-pointer rounded-xl border p-10 transition hover:bg-muted/50 md:px-10 md:py-8"
             >
               <div className="mb-2 flex items-center whitespace-pre-line">
                 <div className="flex flex-col">
@@ -117,20 +119,23 @@ export default function Post() {
                   )}
                 </div>
               </div>
+
               <div className="inline-block w-full whitespace-pre-wrap break-words text-left leading-[1.3] opacity-80">
                 {post.name}
               </div>
               <div className="mb-4 mt-4 text-xs">
-                {post.replies.length > 0 ? (
-                  post.replies.map((reply, index) => (
+                {post.replies && post.replies.length > 0 ? (
+                  post.replies.map((r, index) => (
                     <div
-                      key={reply.id}
-                      className={`mb-2 text-xs ${index === 0 ? "" : "pl-5"}`}
+                      key={r.id}
+                      className={`mb-2 text-xs ${
+                        index === 0 ? "" : "pl-5"
+                      } text-muted-foreground`}
                     >
                       {index === 0 && (
                         <CornerBottomLeftIcon className="mr-1 inline h-4 w-4" />
                       )}
-                      {reply.body}
+                      {r.body}
                     </div>
                   ))
                 ) : (
@@ -138,69 +143,19 @@ export default function Post() {
                     No replies yet.
                   </div>
                 )}
+              </div>
 
-                <div className="mt-4">
-                  {selectedPostId === post.id && (
-                    <div className="rounded-md p-4">
-                      <Textarea
-                        value={newReply}
-                        onChange={(e) => setNewReply(e.target.value)}
-                        placeholder="Add a reply..."
-                        className="mb-2 w-full resize-none rounded border px-3 py-2 text-xs"
-                      />
-                      <div className="flex justify-end">
-                        <Button
-                          onClick={() => handleAddReply(post.id)}
-                          className="mr-2"
-                        >
-                          Submit
-                        </Button>
-                        <Button
-                          onClick={() => setSelectedPostId(null)}
-                          variant="outline"
-                          size="icon"
-                        >
-                          <CrossCircledIcon className="h-4 w-4 text-gray-500" />
-                        </Button>
-                      </div>
-                    </div>
-                  )}
-                  <div className="">
-                    <Button
-                      onClick={() =>
-                        setSelectedPostId(
-                          selectedPostId === post.id ? null : post.id
-                        )
-                      }
-                      variant="outline"
-                      className="mr-2"
-                      size="icon"
-                    >
-                      <ChatBubbleIcon className="h-4 w-4" />
-                    </Button>
-                    <Button
-                      disabled
-                      variant="outline"
-                      className="mr-2"
-                      size="icon"
-                    >
-                      <HeartIcon className="h-4 w-4" />
-                    </Button>
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button variant="outline" size="icon">
-                          <PaperPlaneIcon className="h-4 w-4" />
-                        </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent align="start" className="w-[190px]">
-                        <DropdownMenuItem onClick={copyLinkToClipboard}>
-                          Copy link
-                        </DropdownMenuItem>
-                        <DropdownMenuSeparator />
-                      </DropdownMenuContent>
-                    </DropdownMenu>
-                  </div>
-                </div>
+              <div className="mt-2 flex gap-2">
+                <Button
+                  disabled
+                  variant="outline"
+                  size="icon"
+                >
+                  <ChatBubbleIcon className="h-4 w-4" />
+                </Button>
+                <Button disabled variant="outline" size="icon">
+                  <HeartIcon className="h-4 w-4" />
+                </Button>
               </div>
             </div>
           ))
