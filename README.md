@@ -54,7 +54,9 @@ npm install
 
 ### Add a ENV FILE with:
 ```env
-DATABASE_URL="postgresql://postgres:password@localhost:5432/anonypost"
+NEXT_PUBLIC_DATABASE_URL="postgresql://postgres:password@localhost:5432/anonumu"
+BETTER_AUTH_SECRET="" ## generate-secret.vercel.app/32
+BETTER_AUTH_URL=http://localhost:3000 #Base URL of your app
 ```
 
 ### 3. Run on development &/or production
